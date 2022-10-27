@@ -20,6 +20,7 @@ public class RegistrationForm extends BasePage {
     private final By confirmPasswordLabel = By.cssSelector("label[for='c_password']");
     private final By submitBtn = By.cssSelector("input[value='submit']");
     private final By heading = By.cssSelector(".heading");
+    private final By hobby = By.cssSelector("fieldset[class='fieldset padding-bottom'] label:nth-child(3)");
 
 
 
@@ -34,6 +35,11 @@ public class RegistrationForm extends BasePage {
 
     public RegistrationForm setLastNameFld(String lastName){
         wait.until(ExpectedConditions.visibilityOfElementLocated(lastNameFld)).sendKeys(lastName);
+        return this;
+    }
+
+    public RegistrationForm setHobby(){
+        driver.findElement(hobby).click();
         return this;
     }
 
@@ -71,6 +77,7 @@ public class RegistrationForm extends BasePage {
     public RegistrationForm fillTheFormCorrectly(User user){
         return  setFirstNameFld(user.getFirstName()).
                 setLastNameFld(user.getLastName()).
+                setHobby().
                 setCountry(user.getCountry()).
                 setPhoneNumber(user.getPhoneNumber()).
                 setEmail(user.getEmail()).
